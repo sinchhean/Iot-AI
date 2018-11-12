@@ -1,0 +1,17 @@
+<Container>:
+    display: display
+    rows: 1
+    BoxLayout:
+        orientation: "vertical"
+        AddButton:
+            on_press: root.add_one()
+            on_release: root.stop_it()
+            anchor_x: 'right'
+            anchor_y: 'bottom'
+        SubtractButton:
+            on_press: root.subtract_one()
+            on_release: root.stop_it()
+    Label:
+        id: display
+        font_size: dp(50)
+        text: 'stop'

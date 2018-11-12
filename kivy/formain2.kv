@@ -1,0 +1,101 @@
+#:kivy 1.10.0
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+Screen_Management:
+    id: screen_management
+    transition: FadeTransition()
+    Main_Screen:
+        id: main_screen
+        name: "main_screen_name"
+        manager: screen_management
+    Input_Screen:
+        id: tire_setup_screen_id
+        name: "tire_setup_screen_name"
+        manager: screen_management
+    Input_Number_Inch_Screen:
+        name: "inch_screen"
+        manager: screen_management
+
+<Main_Screen>:
+    canvas:
+        Color:
+            rgb: [.30, .30, .30]
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Button:
+        background_color: .52, .52, .52, 1
+        bold: 1
+        color: .0078,.67,.69,1
+        size_hint: .2, 1
+        pos_hint: {"x": 0, "center_y": .5}
+        on_release: root.manager.current = "tire_setup_screen_name"
+        text: " INPUTS "
+        font_size: 30
+
+# Screen 1: Input Screen
+<Input_Screen>:
+    canvas:
+        Color:
+            rgb: [.30, .30, .30]
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    GridLayout:
+        cols: 2
+        pos: (160,150)
+        size_hint: (.8, .8)
+
+        Button:
+            background_color: .52, .52, .52, 1
+            bold: 1
+            color: .0078,.67,.69,1
+            font_size: 30
+            text: "INPUT\n(Inch)"
+            size_hint_x: None
+            width: 150
+            on_release: root.manager.current = "inch_screen"
+            # This button will go to the screen2
+
+        Button:
+            id: inch_input
+            background_color: .52, .52, .52, 1
+            bold: 1
+            color: .0078,.67,.69,1
+            font_size: 100
+
+# Screen 2: Input Inch Screen Data
+<Input_Number_Inch_Screen>:
+    canvas:
+        Color:
+            rgb: [.30, .30, .30]
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    GridLayout:
+        orientation: 'vertical'
+        display: entry
+        rows: 6
+        padding: 10
+        spacing: 10
+
+        BoxLayout:
+            TextInput:
+                id: entry
+                font_size: 75
+                multiline: False
+
+# This will be the button that would go back to the screen and update
+# the button text with the new text entered in the TextInput
+        BoxLayout:
+            spacing: 10
+            Button:
+                background_color: .52, .52, .52, 1
+                bold: 1
+                color: .0078,.67,.69,1
+                font_size: 40
+                text:"ENTER"
+                on_release: root.manager.current = "tire_setup_screen_name"
+                on_press: root.manager.ids.tire_setup_screen_id.ids.inch_input.text = entry.text

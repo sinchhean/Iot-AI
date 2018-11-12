@@ -1,0 +1,91 @@
+#:import math math
+
+
+[ClockNumber@Label]:
+    text: str(ctx.i)
+    pos_hint: {"center_x": 0.5+0.42*math.sin(math.pi/6*(ctx.i-12)), "center_y": 0.5+0.42*math.cos(math.pi/6*(ctx.i-12))}
+    font_size: self.height/16
+
+<Button>:
+	size_hint:0.3,0.2	
+
+
+
+<turnwindow>:
+	Painter
+	Button:
+		on_release:app.root.current = "main"
+		text:"back to home"
+		pos_hint:{"right":1,"top":1}
+		font_size:30
+
+<Mainwindow>:
+    face: face
+    ticks: ticks
+    FloatLayout:
+        id: face
+        size_hint: None, None
+        pos_hint: {"center_x":0.5, "center_y":0.5}
+        size: 0.9*min(root.size), 0.9*min(root.size)
+        canvas:
+            Color:
+                rgb: 0.1, 0.1, 0.1
+            Ellipse:
+                size: self.size     
+                pos: self.pos
+        ClockNumber:
+            i: 1
+        ClockNumber:
+            i: 2
+        ClockNumber:
+            i: 3
+        ClockNumber:
+            i: 4
+        ClockNumber:
+            i: 5
+        ClockNumber:
+            i: 6
+        ClockNumber:
+            i: 7
+        ClockNumber:
+            i: 8
+        ClockNumber:
+            i: 9
+        ClockNumber:
+            i: 10
+        ClockNumber:
+            i: 11
+        ClockNumber:
+            i: 12
+    Ticks:
+        id: ticks
+        r: min(root.size)*0.9/2
+    Button:
+        on_release:app.root.current = "other"
+        text:"turn to other"
+        font_size:30
+    Button:
+        name:"btn2"
+        on_release:app.root.current = "face1"
+        text:"turn to face"
+        font_size:30
+        pos: 580,1
+
+<facewindow>:
+    Smile
+	Button:
+		on_release:app.root.current = "main"
+		text:"back to home"
+		pos_hint:{"right":1,"top":1}
+		font_size:30
+
+
+<Animationwindow>:
+    AnimationScreen
+        invader: invader_1
+        AnimatingImage:
+            id: invader_1
+            size_hint:None,None
+            size:32,32
+            center: root.width / 2, root.height / 2
+ 
