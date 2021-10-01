@@ -1,0 +1,3 @@
+title=test 1
+author=It's me
+orientation=portrait

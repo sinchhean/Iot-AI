@@ -1,0 +1,49 @@
+<Container>:
+    rows: 2
+    BoxLayout:
+        size_hint_y: 0.5
+        TextInput:
+            id: ipinput
+            size_hint_x: 4
+            multiline: False
+        Button:
+            size_hint_x: 1
+            id: lala
+            text: 'ok'
+            on_press: root.ip_input()
+        Label: 
+            size_hint_x: 1
+            id: whatisit
+            text: ""
+
+    GridLayout:
+        size_hint_y: 2
+        cols: 3
+        BoxLayout:
+                  
+
+        Button:
+            id: label1
+            text: 'forward'
+            on_press: root.move_forward()
+            on_release: root.stop_it()
+        BoxLayout:
+            Label:
+
+        Button:
+            id: label2
+            text: 'left'
+            on_press: root.turn_left()
+            on_release: root.stop_it()
+
+        Button:
+            id: label4
+            text: 'backward'
+            on_press: root.move_backward()
+            on_release: root.stop_it()
+
+        Button:
+            id: label3
+            text: 'right'
+            on_press: root.turn_right()
+            on_release: root.stop_it()
